@@ -28,6 +28,12 @@ type VerifyResponse struct {
 	Match bool `json:"valid"`
 }
 
+// Health check handler
+func HealthCheck(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	w.Write([]byte("OK"))
+}
+
 // HashPassword using bcrypt
 func HashPassword(w http.ResponseWriter, r *http.Request) {
 	var req HashRequest
@@ -69,6 +75,7 @@ func VerifyPassword(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/hash", HashPassword)
 	http.HandleFunc("/verify", VerifyPassword)
+	http.HandleFunc("/health", HealthCheck)
 
 	log.Println("Microservice running on port 8080...")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
