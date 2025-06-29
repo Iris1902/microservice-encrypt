@@ -31,7 +31,7 @@ type VerifyResponse struct {
 // Health check handler
 func HealthCheck(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("OKEY"))
+	w.Write([]byte("The service is running!"))
 }
 
 // HashPassword using bcrypt
