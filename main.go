@@ -73,9 +73,9 @@ func VerifyPassword(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/hash", HashPassword)
-	http.HandleFunc("/verify", VerifyPassword)
-	http.HandleFunc("/health", HealthCheck)
+	http.HandleFunc("/encrypt/hash", HashPassword)
+	http.HandleFunc("/encrypt/verify", VerifyPassword)
+	http.HandleFunc("/encrypt/health", HealthCheck)
 
 	log.Println("Microservice running on port 8080...")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
